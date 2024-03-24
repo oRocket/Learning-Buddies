@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 # Database connection
 def get_db_connection():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('learning-buddies.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -20,7 +20,8 @@ def create_table():
                     first_name TEXT NOT NULL,
                     last_name TEXT NOT NULL,
                     email TEXT NOT NULL UNIQUE,
-                    password TEXT NOT NULL)''')
+                    new_password TEXT NOT NULL UNIQUE,
+                    confirm_password TEXT NOT NULL UNIQUE)''')
     conn.commit()
     conn.close()
 
@@ -37,11 +38,12 @@ def signup():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         email = request.form['email']
-        password = request.form['password']
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
 
         conn = get_db_connection()
-        conn.execute('INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)',
-                     (first_name, last_name, email, password))
+        conn.execute('INSERT INTO users (first_name, last_name, email, new_password, confirm_password) VALUES (?, ?, ?, ?, ?)',
+                     (first_name, last_name, email, new_password, confirm_password))
         conn.commit()
         conn.close()
 

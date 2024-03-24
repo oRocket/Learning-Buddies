@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up | Learning-Buddies</title>
+    <title>learning-buddies</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -38,9 +38,10 @@
         <div class="container">
             <h7>Sign Up</h7>
             <p><strong>Please fill in this form to create an account!</strong></p>
-            <form action="#" method="post">
+            <form action="/signup" method="post">
                 <div>
-                    <input type="text" placeholder="First Name" class="first_name" required>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required>
                     <input type="text" placeholder="Last Name" class="last_name" required>
                 </div>
                 <div>
