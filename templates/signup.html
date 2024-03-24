@@ -6,13 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up | Learning-Buddies</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <section id="header">
-        <a href="#"><img src="img/logo1.png" class="logo" alt="" width="80px" height="50px"></a>
+        <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
         <h0 class="heading">Learning-Buddies</h0>
 
         <div>
@@ -23,14 +22,14 @@
                 <li><a href="login.html">Log in</a></li>
                 <li><a class="active" href="signup.html">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
-                    <img src="img/features/close.png" alt="" width="30px" height="30px">
+                    <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
                 </icon></a>
             </ul>
         </div>
 
         <div id="mobile">
             <icon id="bar">
-                <img src="img/Side menu.png" width="50px" height="30px">
+                <img src="{{ url_for('static', filename='img/Side menu.png') }}" width="50px" height="30px">
             </icon>
         </div>
     </section>
@@ -86,10 +85,10 @@
             <div class="follow">
                 <h4>Follow us</h4>
                 <div class="icon">
-                    <i><img src="img/features/facebook.png" alt="" width="30px" height="30px"></i>
-                    <i><img src="img/features/twitterX.png" alt="" width="22px" height="22px"></i>
-                    <i><img src="img/features/whatsApp.png" alt="" width="30px" height="30px"></i>
-                    <i><img src="img/features/instagram.png" alt="" width="30px" height="30px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/facebook.png') }}" alt="" width="30px" height="30px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/twitterX.png') }}" alt="" width="22px" height="22px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/whatsApp.png') }}" alt="" width="30px" height="30px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/instagram.png') }}" alt="" width="30px" height="30px"></i>
                 </div>
             </div>
         </div>
@@ -117,7 +116,7 @@
         <div class="column-install">
             <h4>Install App</h4>
                 <div class="row">
-                <img src="img/features/playstore&appstore.png" alt="" width="180px" height="120px">
+                <img src="{{ url_for('static', filename='img/features/playstore&appstore.png') }}" alt="" width="180px" height="120px">
                 </div>
         </div>
 
@@ -127,7 +126,7 @@
 
     </footer>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 
 </html>
