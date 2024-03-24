@@ -4,7 +4,7 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 # Connect to SQLite3 database
 conn = sqlite3.connect('learningbuddies.db')
@@ -44,5 +44,5 @@ def signup():
 
         return redirect('/')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)
