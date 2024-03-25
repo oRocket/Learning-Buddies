@@ -38,9 +38,9 @@ h6 {
     font-weight: 700;
 }
 
-h7 {
+h3 {
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 700; 
 }
 
 p {
@@ -693,9 +693,9 @@ input[type="submit"]:hover {
 }
 
 
-.container {
+.login-container {
     max-width: 1000px;
-    max-height: 1000px;
+    max-height: 1200px;
     margin-left: 1%;
     margin-top: -10%;
     padding: 20px;
@@ -707,7 +707,7 @@ input[type="submit"]:hover {
     font-weight: 300;
 }
 
-.container:hover {
+.login-container:hover {
     background-color: #e2d664;
     box-shadow: 0 5px 15px rgba(0 , 0, 0, 0.10);
 }
@@ -723,6 +723,11 @@ input[type="submit"]:hover {
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.submit {
+	text-align: center;
+	align-items: center;
 }
 
 .form-group {
@@ -770,7 +775,7 @@ input[type="submit"]:hover {
         background-color: #0056b3;
 }
 
-.container .fill-in {
+.login-container .fill-in {
     width: 100%;
     height: 30px;
     padding: 10px;
@@ -780,7 +785,7 @@ input[type="submit"]:hover {
     margin-top: 2%;
 }
 
-.container .first_name {
+.login-container .first_name {
     width: 46%;
     height: 30px;
     padding: 10px;
@@ -790,7 +795,7 @@ input[type="submit"]:hover {
     margin-top: -2%;
 }
 
-.container .last_name {
+.login-container .last_name {
     width: 52%;
     height: 30px;
     padding: 10px;
@@ -801,11 +806,11 @@ input[type="submit"]:hover {
     margin-top: -2%;
 }
 
-.container .checkbox {
+.login-container .checkbox {
     margin-top: 1%;
 }
 
-.container span {
+.login-container span {
     color: rgb(25, 4, 212);
     cursor: pointer;
 }
