@@ -10,16 +10,17 @@
 </head>
 
 <body>
+
     <section id="header">
-        <img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
         <h0 class="heading">Learning-Buddies</h0>
 
         <div>
             </ul>
             <ul id="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-		<li><a href="{{ url_for('courses') }}">Courses</a></li>
-                <li><a class="active" href="{{ url_for('login') }}">Log in</a></li>
+                <li><a class="active" href="{{ url_for('courses') }}">Courses</a></li>
+                <li><a href="{{ url_for('login') }}">Log in</a></li>
                 <li><a href="{{ url_for('signup') }}">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
                     <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
@@ -34,27 +35,27 @@
         </div>
     </section>
 
-    <section id="login-hero">
-        <div class="login-container">
-            <h3 style="text-align: center;">Log In</h3>
-            <form action="/login" method="post">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <div class="password-container">
-                        <input type="text" id="password" name="password" required>
-                        <span class="show-password-toggle" onclick="togglePasswordVisibility('password')">👁️</span>
-                    </div>
-                <div class="submit">
-                    <button type="submit" class="btn">Login</button>
-                </div>
-            </form>
+    <section id="feature" class="section-p1">
+        <div class="feature-box">
+            <img src="{{ url_for('static', filename='img/features/science.png') }}" alt="" width="180px" height="180px">
+            <h6>Science</h6>
+        </div>
 
+        <div class="feature-box">
+            <img src="{{ url_for('static', filename='img/features/tech.png') }}" alt="" width="180px" height="180px">
+            <h6>Technology</h6>
+        </div>
+
+        <div class="feature-box">
+            <img src="{{ url_for('static', filename='img/features/engineering1.png') }}" alt="" width="180px" height="180px">
+            <h6>Engineering</h6>
+        </div>
+
+        <div class="feature-box">
+            <img src="{{ url_for('static', filename='img/features/math.png') }}" alt="" width="180px" height="180px">
+            <h6>Mathematics</h6>
+        </div>
     </section>
-
 
     <footer class="section-p1">
         <div class="column">

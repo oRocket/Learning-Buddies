@@ -72,5 +72,9 @@ def login():
             return render_template('login.html', error='User not found')
     return render_template('login.html')
 
+@app.route('/courses', methods=['GET', 'POST'])
+def courses():
+    return render_template('courses.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
