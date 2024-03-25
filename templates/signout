@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learning-buddies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
+        <h0 class="heading">Learning-Buddies</h0>
+
+        <div>
+            </ul>
+            <ul id="navbar">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="login.html">Log in</a></li>
+                <li><a class="active" href="{{ url_for('signup') }}">Sign up</a></li>
+                <a href="#" id="close"><icon class="">
+                    <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
+                </icon></a>
+            </ul>
+        </div>
+
+        <div id="mobile">
+            <icon id="bar">
+                <img src="{{ url_for('static', filename='img/Side menu.png') }}" width="50px" height="30px">
+            </icon>
+        </div>
+    </section>
+
+    <section id="signup-hero">
+        <div class="container">
+            <h7>Sign Up</h7>
+            <p><strong>Please fill in this form to create an account!</strong></p>
+            <form action="/signup" method="post">
+                <div class="form-group">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+		<div class="form-group">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+		<div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password">New Password:</label>
+		    <div class="password-container"> 
+                    	<input type="text" id="new_password" name="new_password" required>
+			<span class="show-password-toggle" onclick="togglePasswordVisibility('new_password')">< 
+		    <input type="checkbox" id="showNewPassword"> Show New Passoword
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <input type="text" id="confirm_password" name="confirm_password" required>
+		    <input type="checkbox" id="showConfirmPassword"> Show Confirm Password
+                </div>
+                <div>
+                    <input type="checkbox" id="terms" class="checkbox" required>
+                    <label for="terms"><strong>I accept the <span>Terms of Use</span> and <span>Privacy Policy</strong></span>.</label>
+                </div>
+                <div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </div>
+            </form>
+
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get e-mail updates about <span>courses</span> and <span>upcoming events</span>.</p>
+        </div>
+
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="column">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>Oguakrom, Street IV, Ejisu-Ashanti</p>
+            <p><strong>Phone: </strong>+233 (0) 501378473/ +233 (0) 209705826</p>
+            <p><strong>Hours: </strong>8:00 am - 5:00pm, Monday to Friday</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i><img src="{{ url_for('static', filename='img/features/facebook.png') }}" alt="" width="30px" height="30px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/twitterX.png') }}" alt="" width="22px" height="22px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/whatsApp.png') }}" alt="" width="30px" height="30px"></i>
+                    <i><img src="{{ url_for('static', filename='img/features/instagram.png') }}" alt="" width="30px" height="30px"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">News</a>
+            <a href="#">Impact</a>
+            <a href="#">Our team</a>
+            <a href="#">Our interns</a>
+            <a href="#">Our Supporters</a>
+            <a href="#">Terms and Conditions</a>
+            <a href="#">Privacy Policies</a>
+        </div>
+
+        <div class="column">
+            <h4>Courses</h4>
+            <a href="#">Science</a>
+            <a href="#">Technology</a>
+            <a href="#">Engineering</a>
+            <a href="#">Mathematics</a>
+        </div>
+
+        <div class="column-install">
+            <h4>Install App</h4>
+                <div class="row">
+                <img src="{{ url_for('static', filename='img/features/playstore&appstore.png') }}" alt="" width="180px" height="120px">
+                </div>
+        </div>
+
+        <div class="copyright">
+            <p>(c) 2024 Learning-Buddies</p>
+        </div>
+
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

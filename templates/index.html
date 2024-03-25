@@ -18,10 +18,10 @@
         <div>
             </ul>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Home</a></li>
+		    <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="login.html">Log in</a></li>
-                <li><a href="signup.html">Sign up</a></li>
+		<li><a href="{{ url_for('signup') }}">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
                     <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
                 </icon></a>

@@ -564,7 +564,8 @@ footer .row:hover {
 .container {
     max-width: 1000px;
     max-height: 1000px;
-    margin-left: 3%;
+    margin-left: 1%;
+    margin-top: -10%;
     padding: 20px;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -590,6 +591,51 @@ footer .row:hover {
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.form-group {
+	margin-bottom: 6px;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 2px;
+
+}
+.password-container {
+	positive: relative;
+	width: 100%;
+}
+
+.password-container input[type="password"] {
+	border: 1px solid #ccc;
+}
+
+.show-password-toogle {
+	positive: absolute;
+	transform: translateY(-50%);
+	cursor: pointer;
+}
+
+input[type="text"], input[type="password"] {
+	width: 380px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+input[type="submit"] {
+	padding: 8px 15px;
+	background-color: #007bff;
+	color: #fff:
+	border: none;
+	border-radius: 4px;
+	cursor: pointer:
+}
+
+input[type="submit"]:hover {
+	background-color: #0056b3;
 }
 
 .container .fill-in {
@@ -624,7 +670,7 @@ footer .row:hover {
 }
 
 .container .checkbox {
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .container span {
