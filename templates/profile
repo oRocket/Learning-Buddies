@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learning-buddies</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
+        <h0 class="heading">Learning-Buddies</h0>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('courses') }}">Courses</a></li>
+                <li><a class="active" href="{{ url_for('profile') }}">Log in</a></li>
+                <a href="#" id="close"><icon class="">
+                    <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
+                </icon></a>
+            </ul>
+        </div>
+
+        <div id="mobile">
+            <icon id="bar">
+                <img src="{{ url_for('static', filename='img/Side menu.png') }}" width="50px" height="30px">
+            </icon>
+        </div>
+    </section>
+
+    <section class="profile-h3">
+        <h3>User Profile</h3>
+    </section>
+
+    <section id="profile-section">
+        <form id="profileForm1" action="#" method="POST" enctype="multipart/form-data">
+            <div class="information">
+                <h4>Personal Details</h4>
+                <label class="profile-label" for="profile_picture">Profile Picture:</label>
+                <input class="profile-input" type="file" id="profile_picture" name="profile_picture"><br><br>
+
+                <label class="profile-label" for="full_name">Full Name:</label>
+                <input class="profile-input" type="text" id="full_name" name="full_name"><br><br>
+
+                <label class="profile-label" for="gender">Gender:</label>
+                <select class="profile-select" id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br><br>
+
+                <label class="profile-label" for="email">Email:</label>
+                <input class="profile-input" type="email" id="email" name="email"><br><br>
+
+                <label class="profile-label" for="age">Age:</label>
+                <select class="profile-select" id="age" name="age">
+                    <option value="12 - 18">12 - 18</option>
+                    <option value="19 - 25">19 - 25</option>
+                    <option value="26 - 30">26 - 30</option>
+                </select><br><br>
+
+                <label class="profile-label" for="dob">Date of Birth:</label>
+                <input class="profile-input" type="date" id="dob" name="dob"><br><br>
+
+                <label class="profile-label" for="telephone">Telephone Number:</label>
+                <input class="profile-input" type="tel" id="telephone" name="telephone"><br><br>
+            </div>
+        </form>
+
+        <form id="profileForm2" action="#" method="POST" enctype="multipart/form-data">
+            <div class="information">
+                <h4>Academic Details</h4>
+                <label class="profile-label" for="level_of_education">Level of Education:</label>
+                <select class="profile-select" id="level_of_education" name="level_of_education">
+                    <option value="Basic School">Basic School</option>
+                    <option value="High School">High School</option>
+                    <option value="College">College</option>
+                    <option value="Graduate School">Graduate School</option>
+                </select><br><br>
+
+                <label class="profile-label" for="courses_enrolled">Courses:</label>
+                <select class="profile-select" id="courses_enrolled" name="courses_enrolled">
+                    <option value="Science">Science</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Mathematics">Mathematics</option>
+                </select><br><br>
+
+                <label class="profile-label" for="about_me">About me:</label>
+                <textarea id="about_me" name="about_me" rows="4" cols="50"></textarea><br><br>
+
+                <label class="profile-label" for="mentor">Mentor:</label>
+                <input class="profile-input" type="text" id="mentor" name="mentor"><br><br>
+
+                <input class="profile-input" type="checkbox" id="notification" name="notification" value="Yes">
+                <label class="profile-label" for="notification">Receive notifications</label><br><br>
+
+                <label class="profile-label" for="calendar">Study Calendar:</label>
+                <input class="profile-input" type="datetime-local" id="calendar" name="calendar"><br><br>
+            </div>
+        </form>
+    </section>
+
+    <section class="profile-h3">
+        <div>
+            <input class="profile-input" type="submit" value="Submit">
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

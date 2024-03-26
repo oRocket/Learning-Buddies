@@ -814,3 +814,96 @@ input[type="submit"]:hover {
     color: rgb(25, 4, 212);
     cursor: pointer;
 }
+
+/* Profile page */
+
+#profileForm1,
+#profileForm2,
+#profileForm3 {
+    background-image: url("img/profile.png");
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-baseline;
+    justify-content: space-between;
+    background-size: cover;
+    background-position: top 25% right 0%;
+    padding: 40px 40px;
+    max-width: 350px;
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+#profile-section {
+    margin: 20px;
+    padding: 40px 40px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile-h3 {
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: -2%;
+}
+
+#profileForm1 .profile-label,
+#profileForm2 .profile-label,
+#profileForm3 .profile-label {
+    font-weight: bold;
+    margin-bottom: 2px;
+    width: 100%;
+}
+
+#profileForm1 .profile-input,
+#profileForm2 .profile-input,
+#profileForm3 .profile-input,
+#profileForm1 .profile-select,
+#profileForm2 .profile-select,
+#profileForm3 .profile-select,
+#profileForm1 textarea,
+#profileForm2 textarea,
+#profileForm3 textarea {
+    width: calc(100% - 5px); /* Adjusted width to accommodate the border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: calc(100% - 5px); /* Adjusted width to accommodate the border */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#profileForm1 input[type="submit"],
+#profileForm2 input[type="submit"],
+#profileForm3 input[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 20px 20px;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#profileForm1 input[type="submit"]:hover,
+#profileForm2 input[type="submit"]:hover,
+#profileForm3 input[type="submit"] {
+    background-color: #45a049;
+}
+
