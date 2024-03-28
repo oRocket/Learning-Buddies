@@ -832,19 +832,28 @@ input[type="submit"]:hover {
     margin: 2px;
     border: 1px solid black;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
 }
 
 #profileForm1,
 #profileForm2,
 #profileForm3 {
 	height: 700px;
+	background-color: rgb(240, 220, 143);
+	transition: background-color 0.3s;
 }
 
+#profileForm1:hover,
+#profileForm2:hover,
+#profileForm3:hover {
+	background-color: #e2d664;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.10);
+}
+
+
 #profile-section {
-	background-image: url("img/profile.jpg");
+	background-image: url("img/Login-hero.jpg");
     	width: 100%;
 	padding: 40px 40px;
     	display: flex;
@@ -863,8 +872,11 @@ input[type="submit"]:hover {
 
 .profile-h3 {
     text-align: center;
-    margin-top: 1%;
-    margin-bottom: -2%;
+    width: 100%;
+    background-image: url(img/features/newsletter1a.jpg);
+    padding: 20px 20px;
+    font-weight: 300;
+    color: #ee9c21;
 }
 
 #profileForm1 .profile-label,
@@ -890,6 +902,12 @@ input[type="submit"]:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.formTopic {
+	text-align: center;
+	margin-bottom: 5px;
+	color: #004687;
 }
 
 textarea {
