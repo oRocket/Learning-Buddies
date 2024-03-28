@@ -46,7 +46,7 @@ def signup():
         conn.commit()
         conn.close()
 
-        return redirect('profile.html')
+        return redirect('/profile')
     return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -65,7 +65,7 @@ def login():
         if user:
             # Check if the provided password matches the stored password
             if password == user['new_password']:
-                return redirect('profile.html')  # Redirect to home page upon successful login
+                return redirect('/profile')  # Redirect to profile upon successful login
             else:
                 return render_template('login.html', error='Incorrect password')
         else:

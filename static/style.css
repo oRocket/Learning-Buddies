@@ -820,8 +820,8 @@ input[type="submit"]:hover {
 #profileForm1,
 #profileForm2,
 #profileForm3 {
-    background-image: url("img/profile.png");
     display: flex;
+    flex: 1;
     flex-wrap: wrap;
     align-items: flex-baseline;
     justify-content: space-between;
@@ -837,14 +837,28 @@ input[type="submit"]:hover {
     background-color: #f2f2f2;
 }
 
+#profileForm1,
+#profileForm2,
+#profileForm3 {
+	height: 700px;
+}
+
 #profile-section {
-    margin: 20px;
-    padding: 40px 40px;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	background-image: url("img/profile.jpg");
+    	width: 100%;
+	padding: 40px 40px;
+    	display: flex;
+    	align-items: center;
+    	flex-wrap: wrap;
+    	justify-content: space-between;
+}
+
+.all-forms {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%
 }
 
 .profile-h3 {
