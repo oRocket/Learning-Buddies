@@ -23,14 +23,49 @@ function togglePasswordVisibility(inputId) {
 		passwordField.type = "password"
 	}
 }
-// Add your JavaScript code here
-document.getElementById('profileForm').addEventListener('submit', function(event) {
-    // Prevent the form from submitting
-    event.preventDefault();
 
-    // You can add form validation or submission handling here
-    // For example, you could use JavaScript to validate the form inputs before submission
-    // or send the form data to a server using AJAX
-    // For demonstration purposes, we're just preventing the form from submitting in this example
-    console.log('Form submitted (but not really because this is a demo)');
+
+document.getElementById('saveButton').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    // Extract form data from each form and combine into a single object
+    const formData = {
+        ...extractFormData('profileForm1'),
+        ...extractFormData('profileForm2'),
+        ...extractFormData('profileForm3')
+    };
+
+    // Send the form data to the server for saving
+    fetch('/profile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    }).then(response => {
+        if (response.ok) {
+            // Handle success (e.g., display a success message)
+            alert('Profile saved successfully!');
+        } else {
+            // Handle error (e.g., display an error message)
+            alert('Failed to save profile. Please try again.');
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        // Handle error (e.g., display an error message)
+        alert('An unexpected error occurred. Please try again later.');
+    });
 });
+
+// Function to extract form data
+function extractFormData(formId) {
+    const formData = {};
+    const form = document.getElementById(formId);
+    const inputs = form.querySelectorAll('input, select, textarea');
+
+    inputs.forEach(input => {
+        formData[input.name] = input.value;
+    });
+
+    return formData;
+}

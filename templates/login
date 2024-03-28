@@ -15,10 +15,11 @@
         <h0 class="heading">Learning-Buddies</h0>
 
         <div>
+            </ul>
             <ul id="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('profile') }}">Profile</a></li>
-                <li><a href="{{ url_for('courses') }}">Courses</a></li>
+		<li><a href="{{ url_for('profile') }}">Profile</a></li>
+		<li><a href="{{ url_for('courses') }}">Courses</a></li>
                 <li><a class="active" href="{{ url_for('login') }}">Log in</a></li>
                 <li><a href="{{ url_for('signup') }}">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
@@ -40,7 +41,7 @@
             <form action="/login" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
+                    <input type="text" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>

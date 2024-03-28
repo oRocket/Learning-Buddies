@@ -11,16 +11,17 @@
 
 <body>
     <section id="header">
-        <img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
         <h0 class="heading">Learning-Buddies</h0>
 
         <div>
+            </ul>
             <ul id="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('profile') }}">Profile</a></li>
-                <li><a href="{{ url_for('courses') }}">Courses</a></li>
-                <li><a class="active" href="{{ url_for('login') }}">Log in</a></li>
-                <li><a href="{{ url_for('signup') }}">Sign up</a></li>
+		<li><a href="{{ url_for('profile') }}">Profile</a></li>
+		<li><a href="{{ url_for('courses') }}">Courses</a></li>
+		<li><a href="{{ url_for('login') }}">Log in</a></li>
+                <li><a class="active" href="{{ url_for('signup') }}">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
                     <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
                 </icon></a>
@@ -34,27 +35,60 @@
         </div>
     </section>
 
-    <section id="login-hero">
-        <div class="login-container">
-            <h3 style="text-align: center;">Log In</h3>
-            <form action="/login" method="post">
+    <section id="signup-hero">
+        <div class="container">
+            <h3 style="text-align: center:">Sign Up</h3>
+            <p><strong>Please fill in this form to create an account!</strong></p>
+            <form action="/signup" method="post">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password">New Password:</label>
                     <div class="password-container">
-                        <input type="text" id="password" name="password" required>
-                        <span class="show-password-toggle" onclick="togglePasswordVisibility('password')">👁️</span>
+                        <input type="text" id="new_password" name="new_password" required>
+                        <span class="show-password-toggle" onclick="togglePasswordVisibility('new_password')">👁️</span>
                     </div>
-                <div class="submit">
-                    <button type="submit" class="btn">Login</button>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password:</label>
+                    <div class="password-container">
+                        <input type="text" id="confirm_password" name="confirm_password" required>
+                        <span class="show-password-toggle" onclick="togglePasswordVisibility('confirm_password')">👁️</span>
+                    </div>
+                </div>
+                <div>
+                    <input type="checkbox" id="terms" class="checkbox" required>
+                    <label for="terms"><strong>I accept the <span>Terms of Use</span> and <span>Privacy Policy</strong></span>.</label>
+                </div>
+                <div>
+                    <button type="submit" class="btn">Sign Up</button>
                 </div>
             </form>
 
     </section>
 
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up For Newsletters</h4>
+            <p>Get e-mail updates about <span>courses</span> and <span>upcoming events</span>.</p>
+        </div>
+
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button class="normal">Sign Up</button>
+
+        </div>
+    </section>
 
     <footer class="section-p1">
         <div class="column">

@@ -15,12 +15,11 @@
         <h0 class="heading">Learning-Buddies</h0>
 
         <div>
-            </ul>
             <ul id="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-		<li><a href="{{ url_for('profile') }}">Profile</a></li>
-		<li><a href="{{ url_for('courses') }}">Courses</a></li>
-		<li><a href="{{ url_for('login') }}">Log in</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('courses') }}">Courses</a></li>
+                <li><a href="{{ url_for('login') }}">Log in</a></li>
                 <li><a class="active" href="{{ url_for('signup') }}">Sign up</a></li>
                 <a href="#" id="close"><icon class="">
                     <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
@@ -42,15 +41,15 @@
             <form action="/signup" method="post">
                 <div class="form-group">
                     <label for="first_name">First Name:</label>
-                    <input type="text" id="first_name" name="first_name" required>
+                    <input type="text" id="first_name" name="first_name" value="{{ user_info['first_name'] if user_info else '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="last_name">Last Name:</label>
-                    <input type="text" id="last_name" name="last_name" required>
+		    <input type="text" id="last_name" name="last_name" value="{{ user_info['last_name'] if user_info else '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" required>
+                    <input type="text" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="new_password">New Password:</label>
