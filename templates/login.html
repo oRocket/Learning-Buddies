@@ -40,14 +40,12 @@
             <form action="/login" method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
+                    <input type="text" id="email" name="email" required><br><br>
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <div class="password-container">
-                        <input type="text" id="password" name="password" required>
-                        <span class="show-password-toggle" onclick="togglePasswordVisibility('password')">👁️</span>
-                    </div>
+                    <input type="password" id="password" name="password" required><br><br>
+                    <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
                 <div class="submit">
                     <button type="submit" class="btn">Login</button>
                 </div>

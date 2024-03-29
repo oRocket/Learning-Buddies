@@ -44,8 +44,11 @@
                 <label class="profile-label" for="profile_picture">Profile Picture:</label>
                 <input class="profile-input" type="file" id="profile_picture" name="profile_picture"><br><br>
 
-                <label class="profile-label" for="full_name">Full Name:</label>
-                <input class="profile-input" type="text" id="full_name" name="full_name" value="{{ user_info['first_name'] if user_info else '' }} {{ user_info['last_name'] if user_info else '' }}"><br><br>
+                <label class="profile-label" for="first_name">First Name:</label>
+                <input class="profile-input" type="text" id="first_name" name="first_name" value="{{ user_info['first_name'] if user_info else '' }}"><br><br>
+
+                <label class="profile-label" for="last_name">Last Name:</label>
+                <input class="profile-input" type="text" id="last_name" name="last_name" value="{{ user_info['last_name'] if user_info else '' }}"><br><br>
 
                 <label class="profile-label" for="gender">Gender:</label>
                 <select class="profile-select" id="gender" name="gender">
@@ -116,24 +119,20 @@
                 <textarea id="any_other_info" name="any_other_info" rows="4" cols="50"></textarea><br><br>
             </div>
         </form>
+        <form id="logoutForm" action="{{ url_for('logout') }}" method="POST">
+            <button class="profile-input"
+            type="submit">Logout</button>
+        </form>
         </div>
 
     </section>
 
     <section class="profile-h3">
         <div>
-                <button class="profile-input" type="submit" id="saveButton">Save</button>
+		<button class="profile-input" type="submit" id="saveButton">Save</button>
         </div>
     </section>
 
-    <section class="profile-h3">
-        <div>
-            <form id="logoutForm" action="{{ url_for('login') }}" method="POST">
-                <button class="profile-input" type="submit">Logout</button>
-            </form>
-        </div>
-    </section>
-    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

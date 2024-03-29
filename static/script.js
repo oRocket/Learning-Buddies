@@ -14,14 +14,13 @@ if (close) {
     })
 }
 
-function togglePasswordVisibility(inputId) {
-	var passwordField = document.getElementById(inputId);
-	if (passwordField.type === "password") {
-		passwordField.type = "text";
-	}
-	else {
-		passwordField.type = "password"
-	}
+function togglePassword(inputId) {
+    var x = document.getElementById(inputId);
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
 }
 
 

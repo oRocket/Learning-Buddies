@@ -618,7 +618,7 @@ label {
 	cursor: pointer;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
 	width: 380px;
 	padding: 5px;
 	border: 1px solid #ccc;

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>learning-buddies</title>
+    <title>"learning-buddies"</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
     <section id="header">
         <a href="#"><img src="{{ url_for('static', filename='img/logo1.png') }}" class="logo" alt="" width="80px" height="50px"></a>
-        <h0 class="heading">Learning-Buddies</h0>
+        <h1 class="heading">Learning-Buddies</h1>
 
         <div>
             <ul id="navbar">
@@ -36,7 +36,7 @@
 
     <section id="signup-hero">
         <div class="container">
-            <h3 style="text-align: center:">Sign Up</h3>
+            <h3 style="text-align: center">Sign Up</h3>
             <p><strong>Please fill in this form to create an account!</strong></p>
             <form action="/signup" method="post">
                 <div class="form-group">
@@ -49,25 +49,25 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
+                    <input type="email" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="new_password">New Password:</label>
                     <div class="password-container">
-                        <input type="text" id="new_password" name="new_password" required>
-                        <span class="show-password-toggle" onclick="togglePasswordVisibility('new_password')">👁️</span>
+                        <input type="password" id="password" name="password" required>
+                        <span class="password-toggle" onclick="togglePassword('password')">👁️</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password:</label>
                     <div class="password-container">
-                        <input type="text" id="confirm_password" name="confirm_password" required>
-                        <span class="show-password-toggle" onclick="togglePasswordVisibility('confirm_password')">👁️</span>
+                        <input type="password" id="confirm_password" name="confirm_password" required>
+                        <span class="password-toggle" onclick="togglePassword('confirm_password')">👁️</span>
                     </div>
                 </div>
                 <div>
                     <input type="checkbox" id="terms" class="checkbox" required>
-                    <label for="terms"><strong>I accept the <span>Terms of Use</span> and <span>Privacy Policy</strong></span>.</label>
+                    <label for="terms"><strong>I accept the <span>Terms of Use</span> and <span>Privacy Policy</span></strong>.</label>
                 </div>
                 <div>
                     <button type="submit" class="btn">Sign Up</button>

@@ -122,10 +122,18 @@
 
     <section class="profile-h3">
         <div>
-		<button class="profile-input" type="submit" id="saveButton">Save</button>
+                <button class="profile-input" type="submit" id="saveButton">Save</button>
         </div>
     </section>
 
+    <section class="profile-h3">
+        <div>
+            <form id="logoutForm" action="{{ url_for('login') }}" method="POST">
+                <button class="profile-input" type="submit">Logout</button>
+            </form>
+        </div>
+    </section>
+    
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
