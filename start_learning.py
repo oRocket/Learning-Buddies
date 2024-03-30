@@ -17,9 +17,8 @@ bcrypt = Bcrypt(app)
 
 # Dummy user class for demonstration (replace with your actual User model)
 class User(UserMixin):
-    def _init_(self):
+    def __init__(self):
         pass
-
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -93,7 +92,7 @@ def signup():
 
         # After successful signup, redirect to the profile page
         session['email'] = email  # Set the user's email in the session
-        return redirect('/profile')
+        return redirect(url_for('profile'))
     return render_template('signup.html')
 
 
@@ -113,9 +112,12 @@ def login():
         if user:
             # Check if the provided password matches the hashed password in the database
             if bcrypt.check_password_hash(user['password'], password):
-                # Authentication successful, store user email in session and redirect to profile page
-                session['email'] = email
-                return redirect('/profile')
+                # Authentication successful, load the user and log them in
+                user_obj = User()
+                user_obj.id = user['id']
+                login_user(user_obj)  # Log in the user
+                session['email'] = email  # Set the user's email in the session
+                return redirect(url_for('profile'))
             else:
                 # Password does not match, render login page with error message
                 return render_template('login.html', error='Invalid email or password')
@@ -123,7 +125,6 @@ def login():
             # User not found, render login page with error message
             return render_template('login.html', error='User not found')
     return render_template('login.html')
-
 
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
@@ -136,7 +137,7 @@ def profile():
         user_email = session['email']  # Retrieve user's email from the session
     else:
         # Handle the case when the user is not logged in
-        return redirect('/login')  # Redirect to the login page or handle it appropriately
+        return redirect(url_for('login'))  # Redirect to the login page or handle it appropriately
 
     # Fetch user's existing information from the database
     conn = get_db_connection()
@@ -169,7 +170,7 @@ def profile():
         conn.close()
 
         # Redirect to a success page or any other page as needed
-        return redirect('/profile')  # You can change this redirection as per your requirement
+        return redirect(url_for('profile'))  # You can change this redirection as per your requirement
 
     # Render the profile page template, passing the user's existing information
     return render_template('profile.html', user_info=user_info)
@@ -182,7 +183,7 @@ def logout():
     session.pop('email', None)
     logout_user()  # Log out the user
     # Redirect to the login page
-    return redirect('/login')
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
