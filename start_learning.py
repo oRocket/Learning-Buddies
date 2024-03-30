@@ -1,12 +1,25 @@
 #!/usr/bin/python3
 
 from flask import Flask, render_template, request, redirect, session, url_for
-import sqlite3
+from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_migrate import Migrate
+from sqlalchemy.exc import IntegrityError
+from flask import flash
 
 app = Flask(__name__)
 app.secret_key = ']!B+M5`sO@8Hgl[m?2,>RMI}'
+
+# Configure the database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///learning-buddies.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize SQLAlchemy
+db = SQLAlchemy(app)
+
+# Initialize Flask-Migrate
+migrate = Migrate(app, db)
 
 # Flask-Login configuration
 login_manager = LoginManager()
@@ -15,175 +28,125 @@ login_manager.init_app(app)
 # Initialize Bcrypt
 bcrypt = Bcrypt(app)
 
-# Dummy user class for demonstration (replace with your actual User model)
-class User(UserMixin):
-    def __init__(self):
-        pass
+# Define the User model
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    confirm_password = db.Column(db.String(100), nullable=False)
 
+# Flask-Login user loader
 @login_manager.user_loader
 def load_user(user_id):
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))
-    user_data = cursor.fetchone()
-    conn.close()
-    
-    if user_data:
-       user = User()
-       user.id = user_data['id']
-       user.email = user_data['email']
-       user.first_name = user_data['first_name']
-       user.last_name = user_data['last_name']
-       return user
-    else:
-        return None
-
-# Database connection
-def get_db_connection():
-    conn = sqlite3.connect('learning-buddies.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
-# Create table if not exists
-def create_table():
-    conn = get_db_connection()
-    conn.execute('''CREATE TABLE IF NOT EXISTS users (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    first_name TEXT NOT NULL,
-                    last_name TEXT NOT NULL,
-                    email TEXT NOT NULL UNIQUE,
-                    password TEXT NOT NULL,
-                    confirm_password TEXT NOT NULL,
-                    age INTEGER,
-                    gender TEXT,
-                    dob DATE,
-                    telephone VARCHAR,
-                    level_of_education TEXT,
-                    courses_enrolled TEXT,
-                    about_me TEXT,
-                    mentor TEXT,
-                    notification TEXT,
-                    calendar DATETIME)''')
-    conn.commit()
-    conn.close()
-
-create_table()
+    return User.query.get(int(user_id))
 
 # Routes
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Update the signup route to hash passwords before storing them
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if current_user.is_authenticated:
+        # If the user is already authenticated, redirect to the profile page
+        return redirect(url_for('profile'))
+    
     if request.method == 'POST':
+        # Process form submission
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         email = request.form['email']
         password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
         confirm_password = request.form['confirm_password']
 
-        conn = get_db_connection()
-        conn.execute('INSERT INTO users (first_name, last_name, email, password, confirm_password) VALUES (?, ?, ?, ?, ?)',
-                     (first_name, last_name, email, password, confirm_password))
-        conn.commit()
-        conn.close()
+        # Check if the email is already registered
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            return render_template('signup.html', error='Email already exists. Please choose another email.')
 
-        # After successful signup, redirect to the profile page
-        session['email'] = email  # Set the user's email in the session
+        # Create a new user instance
+        new_user = User(first_name=first_name, last_name=last_name, email=email, password=password, confirm_password=confirm_password)
+
+        # Add the user to the database
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Log in the new user
+        login_user(new_user)
+
+        # Redirect to the profile page after successful signup
         return redirect(url_for('profile'))
+
+    # For GET requests or if there's no form submission yet, render the signup page
     return render_template('signup.html')
 
 
-# Update the login route to verify passwords using bcrypt
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
-        # Retrieve user's data from the database based on the provided email
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM users WHERE email = ?', (email,))
-        user = cursor.fetchone()
-        
-        if user:
-            # Check if the provided password matches the hashed password in the database
-            if bcrypt.check_password_hash(user['password'], password):
-                # Authentication successful, load the user and log them in
-                user_obj = User()
-                user_obj.id = user['id']
-                login_user(user_obj)  # Log in the user
-                session['email'] = email  # Set the user's email in the session
-                return redirect(url_for('profile'))
-            else:
-                # Password does not match, render login page with error message
-                return render_template('login.html', error='Invalid email or password')
+        # Retrieve user from the database
+        user = User.query.filter_by(email=email).first()
+
+        if user and bcrypt.check_password_hash(user.password, password):
+            # Authentication successful, load the user and log them in
+            login_user(user)
+            session['email'] = email
+            return redirect(url_for('profile'))
         else:
-            # User not found, render login page with error message
-            return render_template('login.html', error='User not found')
+            # Authentication failed, render login page with error message
+            return render_template('login.html', error='Invalid email or password')
     return render_template('login.html')
+
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    if current_user.is_authenticated:
+        user = current_user
+    else:
+        # Handle the case when the user is not logged in
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        # Update user profile
+        user.first_name = request.form['first_name']
+        user.last_name = request.form['last_name']
+        user.email = request.form['email']
+        db.session.commit()
+        return redirect(url_for('profile'))
+
+    return render_template('profile.html', user=user)
 
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
     return render_template('courses.html')
 
-@app.route('/profile', methods=['GET', 'POST'])
-@login_required
-def profile():
-    if 'email' in session:
-        user_email = session['email']  # Retrieve user's email from the session
-    else:
-        # Handle the case when the user is not logged in
-        return redirect(url_for('login'))  # Redirect to the login page or handle it appropriately
-
-    # Fetch user's existing information from the database
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM users WHERE email = ?', (user_email,))
-    user_info = cursor.fetchone()
-    conn.close()
-
-    if request.method == 'POST':
-        # Extract additional data from the profile form submission
-        age = request.form['age']
-        gender = request.form['gender']
-        dob = request.form['dob']
-        telephone = request.form['telephone']
-        level_of_education = request.form['level_of_education']
-        courses_enrolled = request.form['courses_enrolled']
-        about_me = request.form['about_me']
-        mentor = request.form['mentor']
-        notification = 'Yes' if 'notification' in request.form else 'No'
-        calendar = request.form['calendar']
-
-        # Update the additional data in the users table in the database
-        conn = get_db_connection()
-        conn.execute('''UPDATE users SET age=?, gender=?, dob=?, telephone=?, level_of_education=?,
-                        courses_enrolled=?, about_me=?, mentor=?, notification=?, calendar=?
-                        WHERE email=?''',
-                     (age, gender, dob, telephone, level_of_education, courses_enrolled,
-                      about_me, mentor, notification, calendar, user_email))
-        conn.commit()
-        conn.close()
-
-        # Redirect to a success page or any other page as needed
-        return redirect(url_for('profile'))  # You can change this redirection as per your requirement
-
-    # Render the profile page template, passing the user's existing information
-    return render_template('profile.html', user_info=user_info)
-
-# Logout route
-@app.route('/logout', methods=['POST'])
+@app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
-    # Clear the user's session
-    session.pop('email', None)
-    logout_user()  # Log out the user
-    # Redirect to the login page
+    if request.method == 'POST':
+        # Perform logout actions
+        session.pop('email', None)
+        logout_user()
+        return redirect(url_for('login'))
+
+    # For GET requests, redirect to login page
     return redirect(url_for('login'))
 
+
 if __name__ == '__main__':
+    # Ensure database initialization and migration
+    with app.app_context():
+        db.create_all()
+        migrate.init_app(app, db)
+        
+        # Apply any pending migrations
+        db.session.commit()
+
     app.run(debug=True)

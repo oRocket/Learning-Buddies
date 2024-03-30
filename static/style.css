@@ -839,7 +839,7 @@ input[type="submit"]:hover {
 #profileForm1,
 #profileForm2,
 #profileForm3 {
-	height: 700px;
+	height: 800px;
 	background-color: rgb(240, 220, 143);
 	transition: background-color 0.3s;
 }
@@ -902,6 +902,10 @@ input[type="submit"]:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+}
+
+.course-section {
+    margin-bottom: 20px;
 }
 
 .formTopic {

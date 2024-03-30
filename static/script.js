@@ -14,6 +14,18 @@ if (close) {
     })
 }
 
+// Add an event listener to the logout link to trigger form submission
+document.addEventListener("DOMContentLoaded", function() {
+    var logoutLink = document.getElementById('logoutLink');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function() {
+            document.getElementById('logoutForm').submit();
+        });
+    }
+});
+
+
+
 function togglePassword(inputId) {
     var x = document.getElementById(inputId);
     if (x.type === "password") {

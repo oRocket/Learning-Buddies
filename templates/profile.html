@@ -18,7 +18,15 @@
             <ul id="navbar">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('courses') }}">Courses</a></li>
-                <li><a class="active" href="{{ url_for('profile') }}">Log in</a></li>
+                {% if current_user.is_authenticated %}
+                <li>
+                    <form id="logoutForm" action="{{ url_for('logout') }}" method="POST">
+                        <a href="#" class="nav-link" id="logoutLink">Log out</a>
+                    </form>
+                </li>
+                {% else %}
+                <li><a class="nav-link active" href="{{ url_for('login') }}">Log in</a></li>
+                {% endif %}
                 <a href="#" id="close"><icon class="">
                     <img src="{{ url_for('static', filename='img/features/close.png') }}" alt="" width="30px" height="30px">
                 </icon></a>
@@ -84,14 +92,13 @@
                     <option value="College">College</option>
                     <option value="Graduate School">Graduate School</option>
                 </select><br><br>
-
-                <label class="profile-label" for="courses_enrolled">Courses:</label>
-                <select class="profile-select" id="courses_enrolled" name="courses_enrolled">
-                    <option value="Science">Science</option>
-                    <option value="Technology">Technology</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Mathematics">Mathematics</option>
-                </select><br><br>
+                <div class="course-section">
+                    <label class="profile-label" for="courses_enrolled">Courses:</label>
+                    <input type="checkbox" name="courses_enrolled" value="Science"> Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Technology"> Technology<br>
+                    <input type="checkbox" name="courses_enrolled" value="Engineering"> Engineering<br>
+                    <input type="checkbox" name="courses_enrolled" value="Mathematics"> Mathematics<br>
+                </div>
 
                 <label class="profile-label" for="about_me">About me:</label>
                 <textarea id="about_me" name="about_me" rows="4" cols="50"></textarea><br><br>
@@ -109,22 +116,16 @@
         <form id="profileForm3" action="#" method="POST" enctype="multipart/form-data">
             <div class="information">
                 <h4 class="formTopic">Notice</h4>
-                <label class="profile-label" for="examination_notice">Examination Notice:</label>
-                <textarea id="examination_notice" name="examination_notice" rows="7" cols="50"></textarea><br><br>
+                <label class="profile-label" for="goals_expectations">Goals and Expectations:</label>
+                <textarea id="goals_expectations" name="goals_expectations" rows="7" cols="50"></textarea><br><br>
 
-                <label class="profile-label" for="marksheet">Marksheet:</label>
-                <textarea id="marksheet" name="marksheet" rows="6" cols="50"></textarea><br><br>
+                <label class="profile-label" for="achievements">Achievements:</label>
+                <textarea id="achievements" name="achievements" rows="7" cols="50"></textarea><br><br>
 
-                <label class="any_other_info" for="any_other_info">Any other information:</label>
-                <textarea id="any_other_info" name="any_other_info" rows="4" cols="50"></textarea><br><br>
+                <label class="challenges" for="challenges">Challenges:</label>
+                <textarea id="challenges" name="challenges" rows="4" cols="50"></textarea><br><br>
             </div>
         </form>
-        <form id="logoutForm" action="{{ url_for('logout') }}" method="POST">
-            <button class="profile-input"
-            type="submit">Logout</button>
-        </form>
-        </div>
-
     </section>
 
     <section class="profile-h3">
