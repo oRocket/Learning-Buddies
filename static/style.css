@@ -943,3 +943,28 @@ textarea {
     background-color: #45a049;
 }
 
+/* Style for the round profile picture */
+.profile-picture-container {
+    width: 120px; /* Set the desired width */
+    height: 120px; /* Set the desired height */
+    border-radius: 50%; /* Make it round */
+    overflow: hidden; /* Hide overflow to make it round */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: -20px;
+}
+
+/* CSS for file input */
+#profile-picture-input {
+    margin-top: 2px; /* Add 2px top margin */
+    margin-bottom: 30px;
+}
+
+.profile-picture {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%; /* Ensure the image fills the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    margin-bottom: 30px;
+}

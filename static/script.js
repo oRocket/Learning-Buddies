@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
 function togglePassword(inputId) {
     var x = document.getElementById(inputId);
     if (x.type === "password") {
@@ -35,11 +34,42 @@ function togglePassword(inputId) {
     }
 }
 
+// Profile picture
+function previewProfilePicture(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Show the profile picture container
+            document.getElementById('profile-picture-container').style.display = 'block';
+            
+            // Set the source of the image
+            document.getElementById('profile-picture-preview').src = e.target.result;
+
+            // Store the image data in localStorage
+            localStorage.setItem('profilePicture', e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Retrieve profile picture from localStorage on page load
+window.onload = function() {
+    const profilePicture = localStorage.getItem('profilePicture');
+    if (profilePicture) {
+        document.getElementById('profile-picture-container').style.display = 'block'; // Show the profile picture container
+        document.getElementById('profile-picture-preview').src = profilePicture; // Set the source of the image
+    }
+};
+
+
+
+
 
 document.getElementById('saveButton').addEventListener('click', function(event) {
     event.preventDefault(); // Prevent the default form submission
-    
-    // Extract form data from each form and combine into a single object
+
+    // Extract form data from all forms and combine into a single object
     const formData = {
         ...extractFormData('profileForm1'),
         ...extractFormData('profileForm2'),
@@ -53,7 +83,8 @@ document.getElementById('saveButton').addEventListener('click', function(event) 
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-    }).then(response => {
+    })
+    .then(response => {
         if (response.ok) {
             // Handle success (e.g., display a success message)
             alert('Profile saved successfully!');
@@ -61,12 +92,29 @@ document.getElementById('saveButton').addEventListener('click', function(event) 
             // Handle error (e.g., display an error message)
             alert('Failed to save profile. Please try again.');
         }
-    }).catch(error => {
+    })
+    .catch(error => {
         console.error('Error:', error);
         // Handle error (e.g., display an error message)
         alert('An unexpected error occurred. Please try again later.');
     });
 });
+
+// Function to extract form data
+function extractFormData(formId) {
+    const formData = {};
+    const form = document.getElementById(formId);
+    if (!form) return formData;
+    
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        if (input.name) {
+            formData[input.name] = input.value;
+        }
+    });
+    return formData;
+}
+
 
 // Function to extract form data
 function extractFormData(formId) {

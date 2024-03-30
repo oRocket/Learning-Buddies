@@ -50,13 +50,15 @@
             <div class="information">
                 <h4 class="formTopic">Personal Details</h4>
                 <label class="profile-label" for="profile_picture">Profile Picture:</label>
-                <input class="profile-input" type="file" id="profile_picture" name="profile_picture"><br><br>
+                    <div id="profile-picture-container" class="profile-picture-container" style="display: none;">
+                        <img id="profile-picture-preview" class="profile-picture" src="#">
+                    </div>
+                    <br>
+                    <input type="file" id="profile-picture-input" accept="image/*" onchange="previewProfilePicture(event)">
+                    <br>
 
-                <label class="profile-label" for="first_name">First Name:</label>
-                <input class="profile-input" type="text" id="first_name" name="first_name" value="{{ user_info['first_name'] if user_info else '' }}"><br><br>
-
-                <label class="profile-label" for="last_name">Last Name:</label>
-                <input class="profile-input" type="text" id="last_name" name="last_name" value="{{ user_info['last_name'] if user_info else '' }}"><br><br>
+                <label class="profile-label" for="full_name">Full Name:</label>
+                <input class="profile-input" type="text" id="full_name" name="full_name" value="{{ user.first_name }} {{ user.last_name }}" readonly><br><br>
 
                 <label class="profile-label" for="gender">Gender:</label>
                 <select class="profile-select" id="gender" name="gender">
@@ -65,7 +67,7 @@
                 </select><br><br>
 
                 <label class="profile-label" for="email">Email:</label>
-                <input class="profile-input" type="email" id="email" name="email" value="{{ user_info['email'] if user_info else '' }}"><br><br>
+                <input class="profile-input" type="email" id="email" name="email" value="{{ user.email }}" readonly><br><br>
 
                 <label class="profile-label" for="age">Age:</label>
                 <select class="profile-select" id="age" name="age">

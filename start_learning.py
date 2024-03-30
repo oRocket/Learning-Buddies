@@ -7,6 +7,8 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from flask_migrate import Migrate
 from sqlalchemy.exc import IntegrityError
 from flask import flash
+import json
+from flask import jsonify
 
 app = Flask(__name__)
 app.secret_key = ']!B+M5`sO@8Hgl[m?2,>RMI}'
@@ -104,24 +106,34 @@ def login():
             return render_template('login.html', error='Invalid email or password')
     return render_template('login.html')
 
+# Update the /profile route to handle both GET and POST methods
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    if current_user.is_authenticated:
-        user = current_user
-    else:
-        # Handle the case when the user is not logged in
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
-        # Update user profile
-        user.first_name = request.form['first_name']
-        user.last_name = request.form['last_name']
-        user.email = request.form['email']
-        db.session.commit()
-        return redirect(url_for('profile'))
+        # Ensure the request data is in JSON format
+        if request.is_json:
+            data = request.get_json()
 
-    return render_template('profile.html', user=user)
+            # Update user profile with the received data
+            current_user.first_name = data.get('first_name', current_user.first_name)
+            current_user.last_name = data.get('last_name', current_user.last_name)
+            current_user.email = data.get('email', current_user.email)
+
+            # Add more fields here as needed
+
+            # Commit changes to the database
+            db.session.commit()
+
+            # Respond with a success message
+            return jsonify({'message': 'Profile updated successfully'}), 200
+
+        # If the request data is not in JSON format, respond with an error
+        return jsonify({'error': 'Invalid JSON data'}), 400
+
+    # For GET requests, render the profile page
+    return render_template('profile.html', user=current_user)
+
 
 @app.route('/courses', methods=['GET', 'POST'])
 def courses():
