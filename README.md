@@ -21,6 +21,7 @@ Before running the app, ensure you have Python 3.x installed on your system. You
 
 ```bash
 pip install -r requirements.txt
+```
 
 ## Installation
 - Clone the repository to your local machine.
@@ -28,7 +29,9 @@ pip install -r requirements.txt
 - Install dependencies as mentioned above.
 - Run the Flask app using the command:
 
-``` python start_learning.py ```
+``` bash
+python start_learning.py
+```
 
 ## Usage
 - Sign up for a new account or log in with existing credentials.
