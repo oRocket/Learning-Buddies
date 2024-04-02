@@ -680,10 +680,10 @@ footer .row:hover {
         border-radius: 5px;
         border-width: 3px;
         width: 300px;
-        height: 70px;
+        height: 100px;
         display: flex;
-        padding: 12px;
-        padding-top: 10px;
+        padding: 20px;
+        padding-top: 20px;
         padding-bottom: 5px;
         margin-top: 120%;
         margin-left: -10%;
