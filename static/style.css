@@ -1281,23 +1281,3 @@ textarea {
     object-fit: cover; /* Maintain aspect ratio and cover the container */
     margin-bottom: 30px;
 }
-
-#feature-profile {
-    direction: flex;
-}
-
-#feature-profile .feature-box-profile {
-    width: 250px;
-    text-align: center;
-    padding: 25px 25px;
-    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.03);
-    border: 1px solid #cce7d0;
-    border-radius: 4px;
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-.feature-box iframe {
-    width: 100%;
-    height: 100%;
-}
