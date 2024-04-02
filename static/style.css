@@ -884,9 +884,6 @@ footer .row:hover {
 
 }
 
-
-
-
 /* Signup Page */
 #signup-hero {
     background-image: url("img/signup.jpg");
@@ -895,7 +892,7 @@ footer .row:hover {
     background-size: cover;
     background-position: top 25% right 0%;
     padding: 0 80px;
-    display: flex; /* display in flex is row by default hence we set the flex direction to column */
+    display: flex; /* display in flex is row by default hence we set the flex direction to column if need be*/
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
