@@ -94,23 +94,59 @@
                     <option value="College">College</option>
                     <option value="Graduate School">Graduate School</option>
                 </select><br><br>
-                <div class="course-section">
-                    <label class="profile-label" for="courses_enrolled">Courses:</label>
-                    <input type="checkbox" name="courses_enrolled" value="Science"> Science<br>
-                    <input type="checkbox" name="courses_enrolled" value="Technology"> Technology<br>
-                    <input type="checkbox" name="courses_enrolled" value="Engineering"> Engineering<br>
-                    <input type="checkbox" name="courses_enrolled" value="Mathematics"> Mathematics<br>
+        
+                <div class="course-section" id="basic_school_courses" style="display:none;">
+                    <h5>Basic School Courses:</h5>
+                    <input type="checkbox" name="courses_enrolled" value="Biology"> Biology<br>
+                    <input type="checkbox" name="courses_enrolled" value="Algebra"> Algebra<br>
+                    <input type="checkbox" name="courses_enrolled" value="Chemistry"> Chemistry<br>
+                    <input type="checkbox" name="courses_enrolled" value="Earth Science"> Earth Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Geometry"> Geometry<br>
+                    <input type="checkbox" name="courses_enrolled" value="Information Technology"> Information Technology<br>
+                    <input type="checkbox" name="courses_enrolled" value="Environmental Science"> Environmental Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Introduction to Engineering"> Introduction to Engineering<br>
                 </div>
-
+        
+                <div class="course-section" id="high_school_courses" style="display:none;">
+                    <h5>High School Courses:</h5>
+                    <input type="checkbox" name="courses_enrolled" value="Physics"> Physics<br>
+                    <input type="checkbox" name="courses_enrolled" value="Computer Science"> Computer Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Chemistry"> Chemistry<br>
+                    <input type="checkbox" name="courses_enrolled" value="Trigonometry"> Trigonometry<br>
+                    <input type="checkbox" name="courses_enrolled" value="Coding/Programming"> Coding/Programming<br>
+                    <input type="checkbox" name="courses_enrolled" value="Biology"> Biology<br>
+                    <input type="checkbox" name="courses_enrolled" value="Statistics"> Statistics<br>
+                </div>
+        
+                <div class="course-section" id="college_courses" style="display:none;">
+                    <h5>College Courses:</h5>
+                    <input type="checkbox" name="courses_enrolled" value="Computer Science"> Computer Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Electrical Engineering"> Electrical Engineering<br>
+                    <input type="checkbox" name="courses_enrolled" value="Civil Engineering"> Civil Engineering<br>
+                    <input type="checkbox" name="courses_enrolled" value="Electrical Engineering"> Electrical Engineering<br>
+                    <input type="checkbox" name="courses_enrolled" value="Software Engineering"> Software Engineering<br>
+                    <input type="checkbox" name="courses_enrolled" value="Computer Science"> Computer Science<br>
+                    <input type="checkbox" name="courses_enrolled" value="Data Science"> Data Science<br>
+                </div>
+        
+                <div class="course-section" id="graduate_school_courses" style="display:none;">
+                    <h5>Graduate School Courses:</h5>
+                    <input type="checkbox" name="courses_enrolled" value="Advanced Mathematics"> Advanced Mathematics<br>
+                    <input type="checkbox" name="courses_enrolled" value="Research Methodology"> Research Methodology<br>
+                    <input type="checkbox" name="courses_enrolled" value="Thesis Writing"> Thesis Writing<br>
+                </div>
+        
+                <br>
+        
                 <label class="profile-label" for="about_me">About me:</label>
                 <textarea id="about_me" name="about_me" rows="4" cols="50"></textarea><br><br>
-
+        
                 <label class="profile-label" for="mentor">Mentor:</label>
                 <input class="profile-input" type="text" id="mentor" name="mentor"><br><br>
-
+        
                 <input class="profile-input" type="checkbox" id="notification" name="notification" value="Yes">
                 <label class="profile-label" for="notification">Receive notifications</label><br><br>
-
+        
                 <label class="profile-label" for="calendar">Study Calendar:</label>
                 <input class="profile-input" type="datetime-local" id="calendar" name="calendar"><br><br>
             </div>
@@ -128,6 +164,7 @@
                 <textarea id="challenges" name="challenges" rows="4" cols="50"></textarea><br><br>
             </div>
         </form>
+        </div>
     </section>
 
     <section class="profile-h3">
@@ -135,6 +172,29 @@
 		<button class="profile-input" type="submit" id="saveButton">Save</button>
         </div>
     </section>
+
+    <section id="feature" class="section-p1">
+        <div class="feature-box">
+            <iframe width="180" height="180" src="https://www.youtube.com/embed/i_CijGuk7fw" frameborder="0" allowfullscreen></iframe>
+            <h6>Science</h6>
+        </div>
+    
+        <div class="feature-box">
+            <iframe width="180" height="180" src="https://www.youtube.com/embed/On6dsIp5yw0" frameborder="0" allowfullscreen></iframe>
+            <h6>Technology</h6>
+        </div>
+    
+        <div class="feature-box">
+            <iframe width="180" height="180" src="https://www.youtube.com/embed/owHF9iLyxic" frameborder="0" allowfullscreen></iframe>
+            <h6>Engineering</h6>
+        </div>
+    
+        <div class="feature-box">
+            <iframe width="180" height="180" src="https://www.youtube.com/embed/JbhBdOfMEPs" frameborder="0" allowfullscreen></iframe>
+            <h6>Mathematics</h6>
+        </div>
+    </section>
+    
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

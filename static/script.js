@@ -63,7 +63,14 @@ window.onload = function() {
 };
 
 
-
+document.getElementById('level_of_education').addEventListener('change', function() {
+    var selectedValue = this.value;
+    var allCourseSections = document.querySelectorAll('.course-section');
+    allCourseSections.forEach(function(section) {
+        section.style.display = 'none';
+    });
+    document.getElementById(selectedValue.toLowerCase().replace(' ', '_') + '_courses').style.display = 'block';
+});
 
 
 document.getElementById('saveButton').addEventListener('click', function(event) {
