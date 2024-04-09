@@ -30,7 +30,7 @@ pip install -r requirements.txt
 - Run the Flask app using the command:
 
 ``` bash
-python start_learning.py
+python3 start_learning.py
 ```
 
 ## Usage
